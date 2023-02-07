@@ -3,6 +3,22 @@
     margin: 0;
 }
 
+header {
+    padding: 20px;
+    background-color: aqua;
+}
+
+header ul {
+    list-style: none;
+}
+
+header ul li {
+    display: inline;
+    padding: 20px 30px;
+}
+
+
+
 body {
     background-color: #e69696;
 }

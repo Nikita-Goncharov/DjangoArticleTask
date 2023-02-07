@@ -1,0 +1,13 @@
+{% extends 'articles/base.html' %}
+
+{% block title %}Login{% endblock title %}
+
+{% block content %}
+<h1>Login</h1>
+<form  method="post">
+  {% csrf_token %}
+  {{ form.email }}
+  {{ form.password }}
+  <button type="submit">Login</button>
+</form>
+{% endblock content %}

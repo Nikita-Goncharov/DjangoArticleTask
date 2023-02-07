@@ -12,9 +12,15 @@
     <div class="wrapper">
         <header>
             <ul>
-                <li><a>Home</a></li>
-                <li><a>Link</a></li>
-                <li><a>Link</a></li>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'create_article' %}">Create Article</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'register' %}">Register</a></li>
+                {% endif %}
+
             </ul>
         </header>
         <div class="container">

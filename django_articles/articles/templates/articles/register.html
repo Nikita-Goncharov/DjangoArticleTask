@@ -1,0 +1,15 @@
+{% extends 'articles/base.html' %}
+
+{% block title %}Register{% endblock title %}
+
+{% block content %}
+<h1>Register</h1>
+<form  method="post">
+  {% csrf_token %}
+  {{ form.name }}
+  {{ form.email }}
+  {{ form.password }}
+  {{ form.password_repeat }}
+  <button type="submit">Register</button>
+</form>
+{% endblock content %}
