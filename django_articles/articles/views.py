@@ -10,9 +10,19 @@ from .models import Article, Comment
 
 
 def home(request):
-    form = SearchForm()
-    articles = Article.objects.all()
-    return render(request, 'articles/home.html', context={'articles': articles, 'form': form})
+    context = {}
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            search_request = form.cleaned_data['field']
+            filtered_articles = Article.objects.filter(title__contains=search_request) | Article.objects.filter(author__username__contains=search_request)
+            context.update({'articles': filtered_articles})
+    else:
+        form = SearchForm()
+        articles = Article.objects.all()
+        context.update({'articles': articles})
+    context.update({'form': form})
+    return render(request, 'articles/home.html', context=context)
 
 
 def register_view(request):

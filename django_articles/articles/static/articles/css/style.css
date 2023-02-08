@@ -12,18 +12,23 @@ header ul {
     list-style: none;
 }
 
+
 header ul li {
-    display: inline;
     padding: 20px 30px;
 }
 
 
-
 body {
+    height: 100vh;
+    position: relative;
     background-color: #e69696;
 }
 
 footer {
-    padding: 20px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
     background-color: aqua;
 }

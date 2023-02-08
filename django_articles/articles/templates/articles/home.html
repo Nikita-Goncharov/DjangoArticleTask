@@ -4,11 +4,13 @@
 
 
 {% block search_bar %}
-<form method="post">
-    {% csrf_token %}
-    {{ form.field }}
-    <button type="submit">Search</button>
-</form>
+<div class="search_bar">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.field }}
+        <button type="submit">Search</button>
+    </form>
+</div>
 {% endblock search_bar %}
 
 {% block content %}
