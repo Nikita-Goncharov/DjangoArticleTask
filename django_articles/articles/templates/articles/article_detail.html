@@ -9,4 +9,23 @@
     <h5>Author: {{ article.author }}</h5>
     <h6>Date: {{ article.created_date }}</h6>
 </div>
+{% if user.is_authenticated %}
+    <form method="post">
+        {% csrf_token %}
+        <h3>Text: {{ form.body }}</h3>
+        <button type="submit">Create comment</button>
+    </form>
+{% endif %}
+
+{% if comments %}
+    {% for comment in comments %}
+        <div class="comment">
+            <h3>Author: {{ comment.author }}</h3>
+            <p>Text: {{ comment.body }}</p>
+            <h6>Date: {{ article.created_date }}</h6>
+        </div>
+    {% endfor %}
+{% else %}
+    <h3>No comments</h3>
+{% endif %}
 {% endblock content %}

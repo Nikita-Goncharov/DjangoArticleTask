@@ -5,16 +5,13 @@ from django.contrib.auth.models import User
 from django.http import Http404
 from django.contrib import messages
 
-from .forms import ArticleForm, LoginForm, RegisterForm, SearchForm
-from .models import Article
+from .forms import ArticleForm, LoginForm, RegisterForm, SearchForm, CommentForm
+from .models import Article, Comment
 
 
 def home(request):
     form = SearchForm()
     articles = Article.objects.all()
-
-    # ar = Article(title='dfhbgdiv', author=u, body='dsfsgd')
-    # ar.save()
     return render(request, 'articles/home.html', context={'articles': articles, 'form': form})
 
 
@@ -72,7 +69,19 @@ def logout_view(request):
 
 def article_detail(request, pk):
     article = Article.objects.get(pk=pk)
-    return render(request, 'articles/article_detail.html', context={'article': article})
+    comments = Comment.objects.all()
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            body = form.cleaned_data['body']
+            user = request.user
+            comment = Comment(article=article, author=user, body=body)
+            comment.save()
+            return redirect('article_detail', pk)
+    else:
+        form = CommentForm()
+    return render(request, 'articles/article_detail.html', context={'form': form, 'article': article, 'comments': comments})
 
 
 @login_required
