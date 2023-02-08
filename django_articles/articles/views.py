@@ -15,12 +15,14 @@ def home(request):
         form = SearchForm(request.POST)
         if form.is_valid():
             search_request = form.cleaned_data['field']
+
             filtered_articles = Article.objects.filter(title__contains=search_request) | Article.objects.filter(author__username__contains=search_request)
             context.update({'articles': filtered_articles})
     else:
         form = SearchForm()
         articles = Article.objects.all()
         context.update({'articles': articles})
+
     context.update({'form': form})
     return render(request, 'articles/home.html', context=context)
 
@@ -28,23 +30,24 @@ def home(request):
 def register_view(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
+
         if form.is_valid():
             if form.cleaned_data['password'] == form.cleaned_data['password_repeat']:
                 name = form.cleaned_data['name']
                 password = form.cleaned_data['password']
+
                 try:
                     already_registred_user = get_object_or_404(User, username=name)
                     messages.error(request, 'User with this name already created')
-                    return redirect('register')
                 except Http404:
                     user = User.objects.create_user(username=name, password=password)
                     return redirect('login')
             else:
                 messages.error(request, 'Password mismatch')
-                return redirect('register')
         else:
             messages.error(request, 'Form is not valid')
-            return redirect('register')
+
+        return redirect('register')  # if error
     else:
         form = RegisterForm()
     return render(request, 'articles/register.html', context={'form': form})
@@ -53,19 +56,21 @@ def register_view(request):
 def login_view(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
+
         if form.is_valid():
             name = form.cleaned_data['name']
             password = form.cleaned_data['password']
+
             user = authenticate(username=name, password=password)
+
             if user is not None:
                 login(request, user)
                 return redirect('home')
             else:
                 messages.error(request, 'User not found')
-                return redirect('login')
         else:
             messages.error(request, 'Form is not valid')
-            return redirect('login')
+        return redirect('login')  # if error
     else:
         form = LoginForm()
     return render(request, 'articles/login.html', context={'form': form})
@@ -83,9 +88,11 @@ def article_detail(request, pk):
 
     if request.method == 'POST':
         form = CommentForm(request.POST)
+
         if form.is_valid():
             body = form.cleaned_data['body']
             user = request.user
+
             comment = Comment(article=article, author=user, body=body)
             comment.save()
             return redirect('article_detail', pk)
@@ -98,16 +105,18 @@ def article_detail(request, pk):
 def create_article(request):
     if request.method == 'POST':
         form = ArticleForm(request.POST)
+
         if form.is_valid():
             title = form.cleaned_data['title']
             body = form.cleaned_data['body']
             user = request.user
+
             article = Article(title=title, author=user, body=body)
             article.save()
             return redirect('home')
         else:
             messages.error(request, 'Form is not valid')
-            return redirect('create_article')
+        return redirect('create_article')
     else:
         form = ArticleForm()
     return render(request, 'articles/create_article.html', context={'form': form})
