@@ -2,6 +2,15 @@
 
 {% block title %}Main page{% endblock title %}
 
+
+{% block search_bar %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.field }}
+    <button type="submit">Search</button>
+</form>
+{% endblock search_bar %}
+
 {% block content %}
 <h1>Home</h1>
 {% if articles %}
@@ -15,4 +24,5 @@
 {% else %}
     <h2>Articles not found</h2>
 {% endif %}
+
 {% endblock content %}

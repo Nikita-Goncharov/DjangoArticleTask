@@ -11,6 +11,7 @@
 <body>
     <div class="wrapper">
         <header>
+            {% block search_bar %}{% endblock search_bar %}
             <ul>
                 <li><a href="{% url 'home' %}">Home</a></li>
                 {% if user.is_authenticated %}

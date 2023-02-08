@@ -7,3 +7,10 @@ class Article(models.Model):
     author = models.ForeignKey(User, db_column='username', on_delete=models.CASCADE)
     created_date = models.DateField(auto_now_add=True)
     body = models.TextField()
+
+
+class Comment(models.Model):
+    article = models.ForeignKey(Article, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, db_column='username', on_delete=models.CASCADE)
+    created_date = models.DateField(auto_now_add=True)
+    body = models.TextField()
