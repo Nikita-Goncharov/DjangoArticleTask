@@ -1,0 +1,30 @@
+{% extends 'articles/base.html' %}
+
+{% block title %}Main page{% endblock title %}
+
+
+{% block search_bar %}
+<div class="search_bar">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.field }}
+        <button type="submit">Search</button>
+    </form>
+</div>
+{% endblock search_bar %}
+
+{% block content %}
+<h1>Home</h1>
+{% if articles %}
+    {% for article in articles %}
+        <div class="article">
+            <a href="{% url 'article_detail' article.pk %}"><h3>Title: {{ article.title }}</h3></a>
+            <h5>Author: {{ article.author }}</h5>
+            <h6>Date: {{ article.created_date }}</h6>
+        </div>
+    {% endfor %}
+{% else %}
+    <h2>Articles not found</h2>
+{% endif %}
+
+{% endblock content %}

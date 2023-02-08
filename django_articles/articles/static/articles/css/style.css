@@ -1,0 +1,61 @@
+
+/* Main styles start */
+* {
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    padding: 20px;
+    background-color: aqua;
+}
+
+header ul {
+    list-style: none;
+}
+
+
+header ul li {
+    display: inline;
+    padding: 20px 30px;
+}
+
+.search_bar, .menu {
+    display: inline-block;
+}
+
+.menu {
+    float: right;
+}
+
+body {
+    height: 100vh;
+    position: relative;
+    background-color: #e69696;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+    background-color: aqua;
+}
+
+/* Main styles end */
+
+
+/* Home styles start */
+
+/* Home styles end */
+
+
+/* Create article styles start */
+
+/* Create article styles end */
+
+
+/* Article detail styles start */
+
+/* Article detail styles end */

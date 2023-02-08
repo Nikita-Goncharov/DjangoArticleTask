@@ -1,0 +1,21 @@
+{% extends 'articles/base.html' %}
+
+{% block title %}Register{% endblock title %}
+
+{% block content %}
+<h1>Register</h1>
+<form  method="post">
+  {% csrf_token %}
+  <h2>Name: {{ form.name }}</h2>
+  <h2>Password: {{ form.password }}</h2>
+  <h2>Repeat password: {{ form.password_repeat }}</h2>
+  <button type="submit">Register</button>
+</form>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock content %}

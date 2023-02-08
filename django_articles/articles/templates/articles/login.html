@@ -1,0 +1,20 @@
+{% extends 'articles/base.html' %}
+
+{% block title %}Login{% endblock title %}
+
+{% block content %}
+<h1>Login</h1>
+<form  method="post">
+  {% csrf_token %}
+  <h2>Name: {{ form.name }}</h2>
+  <h2>Password: {{ form.password }}</h2>
+  <button type="submit">Login</button>
+</form>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock content %}
