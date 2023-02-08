@@ -7,12 +7,12 @@ class ArticleForm(forms.Form):
 
 
 class LoginForm(forms.Form):
-    name = forms.CharField(max_length=200)
+    name = forms.CharField(max_length=200, widget=forms.TextInput(attrs={'class': ''}))
     password = forms.CharField(widget=forms.PasswordInput())
 
 
 class RegisterForm(forms.Form):
-    name = forms.CharField(max_length=200)
+    name = forms.CharField(max_length=200, widget=forms.TextInput(attrs={'class': ''}))
     password = forms.CharField(widget=forms.PasswordInput())
     password_repeat = forms.CharField(widget=forms.PasswordInput())
 

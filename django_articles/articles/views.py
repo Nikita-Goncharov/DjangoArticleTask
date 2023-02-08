@@ -70,9 +70,25 @@ def logout_view(request):
     return redirect('home')
 
 
+def article_detail(request, pk):
+    article = Article.objects.get(pk=pk)
+    return render(request, 'articles/article_detail.html', context={'article': article})
+
+
 @login_required
 def create_article(request):
-    form = ArticleForm()
     if request.method == 'POST':
-        pass
+        form = ArticleForm(request.POST)
+        if form.is_valid():
+            title = form.cleaned_data['title']
+            body = form.cleaned_data['body']
+            user = request.user
+            article = Article(title=title, author=user, body=body)
+            article.save()
+            return redirect('home')
+        else:
+            messages.error(request, 'Form is not valid')
+            return redirect('create_article')
+    else:
+        form = ArticleForm()
     return render(request, 'articles/create_article.html', context={'form': form})

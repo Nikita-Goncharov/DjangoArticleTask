@@ -16,7 +16,7 @@
 {% if articles %}
     {% for article in articles %}
         <div class="article">
-            <a href=""><h3>Title: {{ article.title }}</h3></a>
+            <a href="{% url 'article_detail' article.pk %}"><h3>Title: {{ article.title }}</h3></a>
             <h5>Author: {{ article.author }}</h5>
             <h6>Date: {{ article.created_date }}</h6>
         </div>

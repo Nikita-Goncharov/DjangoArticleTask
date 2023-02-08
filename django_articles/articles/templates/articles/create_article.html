@@ -6,8 +6,15 @@
 <h1>Create Article</h1>
 <form  method="post">
   {% csrf_token %}
-  {{ form.title }}
-  {{ form.body }}
+  <h2>Title: {{ form.title }}</h2>
+  <h2>Your text: {{ form.body }}</h2>
   <button type="submit">Create</button>
 </form>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
 {% endblock content %}

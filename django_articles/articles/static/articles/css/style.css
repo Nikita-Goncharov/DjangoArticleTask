@@ -22,3 +22,8 @@ header ul li {
 body {
     background-color: #e69696;
 }
+
+footer {
+    padding: 20px;
+    background-color: aqua;
+}
