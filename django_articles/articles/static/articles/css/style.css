@@ -10,7 +10,7 @@
 header {
     padding: 20px;
     height: 40px;
-    background-color: aqua;
+    background-color: #018c8c;
 }
 
 header ul {
@@ -39,6 +39,7 @@ header ul li {
 
 body {
     position: relative;
+    min-height: 100vh;
     background-color: #fff;
 }
 
@@ -48,7 +49,7 @@ footer {
     width: 100%;
     text-align: center;
     padding: 20px 0;
-    background-color: aqua;
+    background-color: #018c8c;
 }
 
 .container {

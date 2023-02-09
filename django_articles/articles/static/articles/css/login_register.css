@@ -7,7 +7,6 @@
     align-items: center;
 }
 
-
 .container div {
     width: 20%;
 }
@@ -16,7 +15,7 @@
     width: 100%;
 }
 
-.form_article_title, .form_article_body {
+.form_name, .form_password, .form_password_repeat {
     width: 100%;
     margin: 10px 0;
     box-sizing: border-box;
@@ -24,9 +23,7 @@
     text-indent: 10px;
 }
 
-.form_article_body {
-    resize: vertical;
-}
+
 
 form button {
     width: 100%;

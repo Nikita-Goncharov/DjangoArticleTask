@@ -1,21 +1,28 @@
 {% extends 'articles/base.html' %}
+{% load static %}
 
 {% block title %}Register{% endblock title %}
 
+{% block head %}
+<link rel="stylesheet" href="{% static 'articles/css/login_register.css' %}">
+{% endblock head %}
+
 {% block content %}
 <h1>Register</h1>
-<form  method="post">
-  {% csrf_token %}
-  <h2>Name: {{ form.name }}</h2>
-  <h2>Password: {{ form.password }}</h2>
-  <h2>Repeat password: {{ form.password_repeat }}</h2>
-  <button type="submit">Register</button>
-</form>
-{% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li>{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %}
+<div>
+    <form  method="post">
+      {% csrf_token %}
+      <div>{{ form.name }}</div>
+      <div>{{ form.password }}</div>
+      <div>{{ form.password_repeat }}</div>
+      <button type="submit">Register</button>
+    </form>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
 {% endblock content %}
