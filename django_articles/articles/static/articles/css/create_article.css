@@ -1,0 +1,51 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.container div {
+    width: 20%;
+}
+
+.container form div {
+    width: 100%;
+}
+
+.form_article_title, .form_article_body {
+    width: 100%;
+    margin: 10px 0;
+    box-sizing: border-box;
+    padding: 7px 0;
+    text-indent: 10px;
+}
+
+.form_article_body {
+    resize: vertical;
+}
+
+form button {
+    width: 100%;
+    padding: 15px 25px;
+    border: none;
+    background-color: #cdcdcd;
+}
+
+form button:hover {
+    background-color: #acacac;
+    cursor: pointer;
+}
+
+.messages {
+    margin: 20px 0;
+    list-style: none;
+}
+
+.messages li {
+    background-color: #ff2d2d;
+    padding: 15px 30px;
+}

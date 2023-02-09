@@ -1,0 +1,47 @@
+.article > * {
+    margin: 20px 0;
+}
+
+.article_container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.article, .comment_form {
+    width: 50%;
+    flex: 1;
+}
+
+.comment_form {
+    text-align: right;
+    margin-right: 30px;
+}
+
+.comment_form .comment_body {
+    text-indent: 10px;
+    padding: 10px 0;
+    width: 40%;
+    box-sizing: border-box;
+}
+
+.comment_form button {
+    width: 40%;
+    padding: 15px 25px;
+    border: none;
+    background-color: #cdcdcd;
+}
+
+.comment_form button:hover {
+    background-color: #acacac;
+    cursor: pointer;
+}
+
+.comment {
+    border: solid 1px #acacac;
+    margin: 20px 0;
+}

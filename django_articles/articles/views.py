@@ -84,7 +84,7 @@ def logout_view(request):
 
 def article_detail(request, pk):
     article = Article.objects.get(pk=pk)
-    comments = Comment.objects.all()
+    comments = Comment.objects.filter(article=article)
 
     if request.method == 'POST':
         form = CommentForm(request.POST)
@@ -95,7 +95,9 @@ def article_detail(request, pk):
 
             comment = Comment(article=article, author=user, body=body)
             comment.save()
-            return redirect('article_detail', pk)
+        else:
+            messages.error(request, 'Form is not valid')
+        return redirect('article_detail', pk)
     else:
         form = CommentForm()
     return render(request, 'articles/article_detail.html', context={'form': form, 'article': article, 'comments': comments})
