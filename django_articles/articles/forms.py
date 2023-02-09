@@ -18,7 +18,7 @@ class RegisterForm(forms.Form):
 
 
 class CommentForm(forms.Form):
-    body = forms.CharField(widget=forms.Textarea(attrs={'class': ''}))
+    body = forms.CharField(widget=forms.Textarea(attrs={'class': 'comment_body', 'placeholder': 'Leave your comment'}))
 
 
 class SearchForm(forms.Form):
