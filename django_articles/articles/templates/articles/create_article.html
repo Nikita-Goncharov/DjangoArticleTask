@@ -1,6 +1,12 @@
 {% extends 'articles/base.html' %}
+{% load static %}
 
 {% block title %}Create Article{% endblock title %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'articles/css/create_article.css' %}">
+{% endblock head %}
+
 
 {% block content %}
 <h1>Create Article</h1>
