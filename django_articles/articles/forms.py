@@ -22,4 +22,4 @@ class CommentForm(forms.Form):
 
 
 class SearchForm(forms.Form):
-    field = forms.CharField(max_length=200)
+    field = forms.CharField(max_length=200, widget=forms.TextInput(attrs={'class': 'search_field', 'placeholder': 'Search by title or by author'}))
