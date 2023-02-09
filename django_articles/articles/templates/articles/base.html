@@ -1,0 +1,39 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock title %}</title>
+    {% block head %}{% endblock head %}
+    <link rel="stylesheet" href="{% static 'articles/css/style.css' %}">
+    <link rel="shortcut icon" href="{% static 'articles/icons/icon.png' %}" type="image/x-icon">
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            {% block search_bar %}{% endblock search_bar %}
+            <div class="menu">
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'create_article' %}">Create Article</a></li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                    {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'register' %}">Register</a></li>
+                    {% endif %}
+
+                </ul>
+            </div>
+        </header>
+        <div class="container">
+            {% block content %}{% endblock content %}
+        </div>
+        <footer>
+            <p>Copyright and other stuff</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+{% extends 'articles/base.html' %}
+{% load static %}
+
+{% block title %}Create Article{% endblock title %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'articles/css/create_article.css' %}">
+{% endblock head %}
+
+
+{% block content %}
+<h1>Create Article</h1>
+<div>
+    <form  method="post">
+      {% csrf_token %}
+      <div>{{ form.title }}</div>
+      <div>{{ form.body }}</div>
+      <button type="submit">Create</button>
+    </form>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+
+{% endblock content %}

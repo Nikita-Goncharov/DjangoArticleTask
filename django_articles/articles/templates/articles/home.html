@@ -1,0 +1,35 @@
+{% extends 'articles/base.html' %}
+{% load static %}
+
+{% block title %}Main page{% endblock title %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'articles/css/home.css' %}">
+{% endblock head %}
+
+{% block search_bar %}
+<div class="search_bar">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.field }}
+        <button type="submit">Search</button>
+    </form>
+</div>
+{% endblock search_bar %}
+
+{% block content %}
+{% if articles %}
+    {% for article in articles %}
+        <div class="article">
+            <div>
+                <a href="{% url 'article_detail' article.pk %}"><h2>Title: {{ article.title }}</h2></a>
+                <h3>Author: {{ article.author }}</h3>
+                <h4>Date: {{ article.created_date }}</h4>
+            </div>
+        </div>
+    {% endfor %}
+{% else %}
+    <h2>Articles not found</h2>
+{% endif %}
+
+{% endblock content %}
