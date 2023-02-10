@@ -2,28 +2,25 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.http import Http404
+from django.http import Http404, JsonResponse
 from django.contrib import messages
+from django.core import serializers
 
-from .forms import ArticleForm, LoginForm, RegisterForm, SearchForm, CommentForm
+from .forms import ArticleForm, LoginForm, RegisterForm, CommentForm
 from .models import Article, Comment
 
 
 def home(request):
     context = {}
     if request.method == 'POST':
-        form = SearchForm(request.POST)
-        if form.is_valid():
-            search_request = form.cleaned_data['field']
-
+            search_request = request.body.decode()
+            print(search_request)
             filtered_articles = Article.objects.filter(title__contains=search_request) | Article.objects.filter(author__username__contains=search_request)
-            context.update({'articles': filtered_articles})
+            filtered_articles = serializers.serialize('json', filtered_articles)
+            return JsonResponse({'filtered_articles': filtered_articles})
     else:
-        form = SearchForm()
         articles = Article.objects.all()
         context.update({'articles': articles})
-
-    context.update({'form': form})
     return render(request, 'articles/home.html', context=context)
 
 
