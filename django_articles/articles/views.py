@@ -16,8 +16,8 @@ def home(request):
             search_request = request.body.decode()
             print(search_request)
             filtered_articles = Article.objects.filter(title__contains=search_request) | Article.objects.filter(author__username__contains=search_request)
-            filtered_articles = serializers.serialize('json', filtered_articles)
-            return JsonResponse({'filtered_articles': filtered_articles})
+            response = serializers.serialize('json', filtered_articles, fields=('pk', 'title', 'created_date', 'author'), use_natural_foreign_keys=True)
+            return JsonResponse({'filtered_articles': response})
     else:
         articles = Article.objects.all()
         context.update({'articles': articles})

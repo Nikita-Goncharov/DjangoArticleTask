@@ -2,6 +2,8 @@ console.log('hello')
 
 const searchField = document.querySelector('.search_field')
 const container = document.querySelector('.container')
+
+// From django docs
 function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -20,6 +22,7 @@ function getCookie(name) {
 
 let csrftoken = getCookie('csrftoken');
 let request = new XMLHttpRequest();
+
 function search() {
     request.open('POST', '/');
 
@@ -46,7 +49,6 @@ function search() {
     }
     request.setRequestHeader("X-CSRFToken", csrftoken);
     request.setRequestHeader("Content-Type", "text/plain;charset=UTF-8");
-
     request.send(searchField.value);
     searchField.value = ''
 }
