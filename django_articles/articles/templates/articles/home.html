@@ -11,8 +11,8 @@
 <div class="search_bar">
     <form method="post">
         {% csrf_token %}
-        {{ form.field }}
-        <button type="submit">Search</button>
+        <input type="text" class="search_field" placeholder="Search by title or by author">
+        <button type="button" onclick="search()">Search</button>
     </form>
 </div>
 {% endblock search_bar %}
@@ -33,3 +33,7 @@
 {% endif %}
 
 {% endblock content %}
+
+{% block js %}
+<script src="{% static 'articles/js/main.js' %}"></script>
+{% endblock js %}
