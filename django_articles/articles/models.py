@@ -11,9 +11,6 @@ class Article(models.Model):
     def __str__(self):
         return self.title
 
-    def natural_key(self):
-        return self.author.username
-
 
 class Comment(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE)

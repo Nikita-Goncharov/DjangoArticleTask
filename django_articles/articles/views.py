@@ -14,7 +14,7 @@ def home(request):
     context = {}
     if request.method == 'POST':
             search_request = request.body.decode()
-            filtered_articles = Article.objects.filter(title__contains=search_request) | Article.objects.filter(author__username__contains=search_request)
+            filtered_articles = Article.objects.filter(title__icontains=search_request) | Article.objects.filter(author__username__icontains=search_request)
             response = serializers.serialize('json', filtered_articles, fields=('pk', 'title', 'created_date', 'author'), use_natural_foreign_keys=True)
             return JsonResponse({'filtered_articles': response})
     else:
