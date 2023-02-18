@@ -12,7 +12,7 @@ class Article(models.Model):
         return self.title
 
     def natural_key(self):
-        return (self.author.username, )
+        return self.author.username
 
 
 class Comment(models.Model):
