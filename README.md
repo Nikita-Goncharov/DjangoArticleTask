@@ -15,5 +15,6 @@
    * **DB_HOST='database_host'**
    * **DB_PORT='database_port'**
    * **SECRET_KEY='django_secret_key'** (будь-який набір символів з клавіатури)
-
+7. Створити postgresql БД з ім'ям, яке ви написали у .env файлі
+8. Провести міграції
 

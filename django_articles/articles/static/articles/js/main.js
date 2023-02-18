@@ -1,4 +1,4 @@
-console.log('hello')
+// console.log('hello')
 
 const searchField = document.querySelector('.search_field')
 const container = document.querySelector('.container')
@@ -30,9 +30,9 @@ function search() {
       if (this.readyState === 4 && this.status === 200) {
           let articlesSrting = JSON.parse(this.responseText)['filtered_articles']
           let articles = JSON.parse(articlesSrting)
-          console.log(articles)
+          // console.log(articles)
           for (let article of articles) {
-              console.log(article)
+              // console.log(article)
               container.innerHTML = ''
               container.innerHTML += `
               <div class="article">
